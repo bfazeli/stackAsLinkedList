@@ -2,37 +2,19 @@
 
 Stack::Stack()
 {
-	first = nullptr;
 	last = nullptr;
 	count = 0;
 }
 
-Stack::Stack(Node* first, int count)
+Stack::Stack(Node* last, int count)
 {
-	this->first = first;
-	last = first;
-	this->count = count;
-}
-
-Stack::Stack(Node* first, Node* last, int count)
-{
-	this->first = first;
 	this->last = last;
 	this->count = count;
 }
 
 void Stack::insertTop(int data)
 {
-	if (count == 0)
-	{
-		first = new Node(data, nullptr);
-		last = first;
-	}
-	else
-	{
-		last->setNextLink(new Node(data, nullptr));
-		last = last->getNextLink();
-	}
+	last = new Node(data, last);
 	++count;
 }
 
@@ -42,7 +24,7 @@ void Stack::print() const
 		cerr << "List is empty. Cannot print." << endl;
 	else
 	{
-		Node *temp = first;
+		Node *temp = last;
 
 		while (temp != nullptr)
 		{
@@ -55,13 +37,13 @@ void Stack::print() const
 
 void Stack::destroyList()
 {
-	Node *temp = first;
+	Node *temp = last;
 
-	while (first != nullptr)
+	while (last != nullptr)
 	{
-		first = first->getNextLink();
+		last = last->getNextLink();
 		delete temp;
-		temp = first;
+		temp = last;
 	}
 
 	count = 0;

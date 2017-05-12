@@ -27,9 +27,7 @@ class Stack
 public:
 	Stack();
 
-	Stack(Node* first, int count);
-
-	Stack(Node* first, Node* last, int count);
+	Stack(Node* last, int count);
 
 	void insertTop(int newData);
 
@@ -40,8 +38,7 @@ public:
 
 	// Function declaration
 
-private:
-    Node *first;	
+private:	
     Node *last;		
 	int count;		
 };
