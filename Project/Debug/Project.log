@@ -1,0 +1,4 @@
+﻿  Main.cpp
+  DoublyList.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  Project.vcxproj -> \\Mac\Home\Desktop\stackAsLinkedList\Debug\Project.exe
+  Project.vcxproj -> \\Mac\Home\Desktop\stackAsLinkedList\Debug\Project.pdb (Partial PDB)

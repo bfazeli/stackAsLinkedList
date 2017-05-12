@@ -27,11 +27,23 @@ class Stack
 public:
 	Stack();
 
+	Stack(const Stack& otherStack);
+
 	Stack(Node* last, int count);
+
+	Stack& operator=(const Stack& otherStack);
 
 	void insertTop(int newData);
 
+	int getTop() const;
+
+	bool isEmpty() const;
+
+	void destroyStack();
+
 	void print() const;
+
+	void pop();
 
 	void destroyList();
 	~Stack();
