@@ -9,7 +9,7 @@ class Node
 {
 public:
 	Node() : data(0), nextLink(NULL) {}
-    Node (int theData, Node *previous, Node *next)
+    Node (int theData, Node *next)
             : data(theData), nextLink(next) {}
     Node *getNextLink( ) const { return nextLink; }
     int getData( ) const { return data; }
@@ -25,9 +25,13 @@ private:
 class Stack
 {
 public:
-	Stack(); 	
+	Stack();
 
-	void insertBack(int newData);
+	Stack(Node* first, int count);
+
+	Stack(Node* first, Node* last, int count);
+
+	void insertTop(int newData);
 
 	void print() const;
 

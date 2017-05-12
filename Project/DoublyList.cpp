@@ -7,6 +7,35 @@ Stack::Stack()
 	count = 0;
 }
 
+Stack::Stack(Node* first, int count)
+{
+	this->first = first;
+	last = first;
+	this->count = count;
+}
+
+Stack::Stack(Node* first, Node* last, int count)
+{
+	this->first = first;
+	this->last = last;
+	this->count = count;
+}
+
+void Stack::insertTop(int data)
+{
+	if (count == 0)
+	{
+		first = new Node(data, nullptr);
+		last = first;
+	}
+	else
+	{
+		last->setNextLink(new Node(data, nullptr));
+		last = last->getNextLink();
+	}
+	++count;
+}
+
 void Stack::print() const
 {
 	if (count == 0)
