@@ -6,9 +6,9 @@ Stack::Stack()
 	count = 0;
 }
 
-Stack::Stack(Node* last, int count)
+Stack::Stack(Node* newLast, int count)
 {
-	this->last = last;
+	last = newLast;
 	this->count = count;
 }
 
@@ -21,15 +21,18 @@ Stack::Stack(const Stack& otherStack)
 
 		last = new Node(temp->getData(), nullptr);
 
-		Node* placeHolder = last;
-
-		while (temp->getNextLink() != nullptr)
+		if (count > 1)
 		{
-			last->setNextLink(new Node(temp->getNextLink()->getData(), nullptr));
-			temp = temp->getNextLink();
-			last = last->getNextLink();
+			Node* placeHolder = last;
+
+			while (temp->getNextLink() != nullptr)
+			{
+				last->setNextLink(new Node(temp->getNextLink()->getData(), nullptr));
+				temp = temp->getNextLink();
+				last = last->getNextLink();
+			}
+			last = placeHolder;
 		}
-		last = placeHolder;
 	}
 	else
 	{
@@ -43,23 +46,24 @@ Stack& Stack::operator=(const Stack& otherStack)
 	{
 		destroyList();
 
-		count = otherStack.count;
-
-		if (count > 0)
+		if (!otherStack.isEmpty())
 		{
-			Node* temp = otherStack.last;
+			Node* temp = otherStack.last->getNextLink();
+			count = otherStack.count;
 
-			last = new Node(temp->getData(), nullptr);
+			last = new Node(otherStack.last->getData(), nullptr);
 
-			Node* placeHolder = last;
-
-			while (temp->getNextLink() != nullptr)
+			if (count > 1)
 			{
-				last->setNextLink(new Node(temp->getNextLink()->getData(), nullptr));
-				temp = temp->getNextLink();
-				last = last->getNextLink();
+				Node* iterStack = last;
+
+				while (temp != nullptr)
+				{
+					iterStack->setNextLink(new Node(temp->getData(), nullptr));
+					temp = temp->getNextLink();
+					iterStack = iterStack->getNextLink();
+				}
 			}
-			last = placeHolder;
 		}
 		else
 		{
